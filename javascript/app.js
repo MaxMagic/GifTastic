@@ -68,6 +68,7 @@ $("button").on("click", function() {
           topicImage.attr("data-still", results[i].images.fixed_height_still.url);
           topicImage.attr("data-animate", results[i].images.original);
           topicImage.attr("data-state", "still");
+          topicImage.addClass("gif");
 
           // Appending the paragraph and image tag to the animalDiv
           topicDiv.append(p);
