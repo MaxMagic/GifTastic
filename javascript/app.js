@@ -16,7 +16,6 @@ function addButtons(){
 };
 
 $("#add-topic").on("click", function(event) {
-    
     event.preventDefault();
 
     let newTopic = $("#find-topic").val().trim();
@@ -68,7 +67,7 @@ $("button").on("click", function() {
             var topicImage = $("<img>");
             // Setting the src attribute of the image to a property pulled off the result item
             topicImage.attr("src", results[i].images.fixed_height.url);
-            topicImage.attr("data-state", "still");;
+            topicImage.attr("data-state", "still");
 
             // Appending the paragraph and image tag to the animalDiv
             topicDiv.append(p);
@@ -79,3 +78,5 @@ $("button").on("click", function() {
         }
     });
 });
+
+addButtons();
