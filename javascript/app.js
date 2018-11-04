@@ -8,16 +8,20 @@ let topics = [];
 
 function addButtons(){
     for (let x = 0; x < topics.length; x++){
-        
+       let newButton = $("<button>");
+       newButton.text(topics[x]);
+       newButton.attr("data-name", topics[x]);
+       $("#buttonArea").append(newButton); 
     }
-}
+};
 
-$("#add-user").on("click", function(event) {
-    // Don't refresh the page!
+$("#add-topic").on("click", function(event) {
+    
     event.preventDefault();
 
     let newTopic = $("#find-topic").val().trim();
-    topics.push(newTopic);});
+    topics.push(newTopic);
+});
 
 $(".gif").on("click", function() {
       // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
@@ -35,7 +39,7 @@ $(".gif").on("click", function() {
 });    
 
 $("button").on("click", function() {
-    let searchTopic = $(this).attr("data-animal");
+    let searchTopic = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       searchTopic + "&api_key=PTyPj05INMiXMaDcWb36KtqE9cYwa931&rating=g&limit=10";
 
@@ -64,7 +68,7 @@ $("button").on("click", function() {
             var topicImage = $("<img>");
             // Setting the src attribute of the image to a property pulled off the result item
             topicImage.attr("src", results[i].images.fixed_height.url);
-            topicImage.attr();
+            topicImage.attr("data-state", "still");;
 
             // Appending the paragraph and image tag to the animalDiv
             topicDiv.append(p);
