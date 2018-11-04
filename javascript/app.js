@@ -6,6 +6,12 @@
 */
 let topics = [];
 
+function addButtons(){
+    for (let x = 0; x < topics.length; x++){
+        
+    }
+}
+
 $("#add-user").on("click", function(event) {
     // Don't refresh the page!
     event.preventDefault();
@@ -26,55 +32,46 @@ $(".gif").on("click", function() {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
       }
-});
-    
+});    
 
 $("button").on("click", function() {
     let searchTopic = $(this).attr("data-animal");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
       searchTopic + "&api_key=PTyPj05INMiXMaDcWb36KtqE9cYwa931&rating=g&limit=10";
 
-    $.ajax({
-      url: queryURL,
-      method: "GET"
-    }).then(function(response) {
-      // Step 1: Run this file, click a button, and see what the response object looks like in the browser's console.
-      // Open up the data key, then open up the 0th, element. Study the keys and how the JSON is structured.
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+        // After data comes back from the request
+        .then(function(response) {
+          console.log(queryURL);
 
-      console.log(response);
-      
+          console.log(response);
+          // storing the data from the AJAX request in the results variable
+          var results = response.data;
 
-      // Step 2: since the image information is inside of the data key,
-      // make a variable named results and set it equal to response.data
+          // Looping through each result item
+          for (var i = 0; i < results.length; i++) {
 
-      // =============== put step 2 in between these dashes ==================
-      var results = response.data;
+            // Creating and storing a div tag
+            var topicDiv = $("<div>");
 
-      // ========================
+            // Creating a paragraph tag with the result item's rating
+            var p = $("<p>").text("Rating: " + results[i].rating);
 
-      for (var i = 0; i < results.length; i++) {
-        console.log(results[i]);
+            // Creating and storing an image tag
+            var topicImage = $("<img>");
+            // Setting the src attribute of the image to a property pulled off the result item
+            topicImage.attr("src", results[i].images.fixed_height.url);
+            topicImage.attr();
 
-      // Step 3: uncomment the for loop above and the closing curly bracket below.
-      // Make a div with jQuery and store it in a variable named animalDiv.
-        var animalDiv = $("<div>");
-        // Make a paragraph tag with jQuery and store it in a variable named p.
-        var p = $("<p>");
-        // Set the inner text of the paragraph to the rating of the image in results[i].
-        p.text(results[i]);
-        // Make an image tag with jQuery and store it in a variable named animalImage.
-        var animalImage = $("<img>");
-        // Set the image's src to results[i]'s fixed_height.url.
-        animalImage.attr("src", results[i].fixed_height.url);
-        // Append the p variable to the animalDiv variable.
-        animalDiv.append(p);
-        // Append the animalImage variable to the animalDiv variable.
-        animalDiv.append(animalImage);
-        // Prepend the animalDiv variable to the element with an id of gifs-appear-here.
-        $("#gifs-appear-here").prepend(animalDiv);
+            // Appending the paragraph and image tag to the animalDiv
+            topicDiv.append(p);
+            topicDiv.append(topicImage);
 
-
-      }
-
-    })
+            // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
+            $("#gifArea").prepend(topicDiv);
+        }
+    });
 });
