@@ -4,10 +4,35 @@
     - Value in search bar is pushed to current array
     - Will need controls for the starting and stopping of gifs
 */
+let topics = [];
+
+$("#add-user").on("click", function(event) {
+    // Don't refresh the page!
+    event.preventDefault();
+
+    let newTopic = $("#find-topic").val().trim();
+    topics.push(newTopic);});
+
+$(".gif").on("click", function() {
+      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+      var state = $(this).attr("data-state");
+      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
+      // Then, set the image's data-state to animate
+      // Else set src to the data-still value
+      if (state === "still") {
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+      } else {
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
+      }
+});
+    
+
 $("button").on("click", function() {
-    var animal = $(this).attr("data-animal");
+    let searchTopic = $(this).attr("data-animal");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-      animal + "&api_key=PTyPj05INMiXMaDcWb36KtqE9cYwa931&limit=10";
+      searchTopic + "&api_key=PTyPj05INMiXMaDcWb36KtqE9cYwa931&rating=g&limit=10";
 
     $.ajax({
       url: queryURL,
@@ -51,5 +76,5 @@ $("button").on("click", function() {
 
       }
 
-    });
-  });
+    })
+});
