@@ -1,4 +1,4 @@
-var topics = ["basketball", "football","soccer"];
+var topics = ["basketball","football","soccer"];
 var searchTopic;
 
 function addButtons(){
