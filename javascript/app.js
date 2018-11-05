@@ -5,6 +5,7 @@
     - Will need controls for the starting and stopping of gifs
 */
 var topics = ["basketball", "football"];
+var searchTopic;
 
 function addButtons(){
   $("#buttonArea").html("");
@@ -19,28 +20,27 @@ function addButtons(){
 
 $("#add-topic").on("click", function(event) {
     event.preventDefault();
-    console.log("soccer" === "soccer");
 
     var newTopic = $("#find-topic").val().trim();
-    console.log(typeof newTopic);
-    for (var i = 0; i < topics.length; i++){
-      if (topics[i] === newTopic){
-        console.log(topics[i]);
-        alert("You added that one already!");
-        $("#find-topic").val("");
-      } else {
-        topics.push(newTopic);
-        $("#find-topic").val("");
-      };
-    }
-});
+
+    if (topics.indexOf(newTopic) === -1){
+      topics.push(newTopic);
+      console.log(topics);
+      $("#find-topic").val("");
+      addButtons();
+    } else {
+      alert("You added that one already! Choose another topic!");
+      console.log(topics);
+      topics.pop();
+      $("#find-topic").val("");
+    };
+  });  
+
 
 $(".gif").on("click", function() {
-      // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
+      
       var state = $(this).attr("data-state");
-      // If the clicked image's state is still, update its src attribute to what its data-animate value is.
-      // Then, set the image's data-state to animate
-      // Else set src to the data-still value
+
       if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
         $(this).attr("data-state", "animate");
@@ -51,8 +51,10 @@ $(".gif").on("click", function() {
 });    
 
 $(".topicButton").on("click", function() {
-  var searchTopic = $(this).attr("data-name");
+  searchTopic = $(this).attr("data-name");
+
   console.log(searchTopic);
+  
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTopic + "&api_key=PTyPj05INMiXMaDcWb36KtqE9cYwa931&rating=g&limit=10";
 
   $.ajax({
