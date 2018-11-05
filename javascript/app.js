@@ -31,9 +31,10 @@ $("#add-topic").on("click", function(event) {
   });  
 
 
-$(".gif").on("click", function() {
+$("#gifArea").on("click", ".gif", function() {
       
       var state = $(this).attr("data-state");
+      console.log(state);
 
       if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
@@ -61,29 +62,23 @@ $("#buttonArea").on("click", "#topicButton", function() {
 
       var results = response.data;
 
-      // Looping through each result item
       for (var i = 0; i < results.length; i++) {
 
-        // Creating and storing a div tag
         var topicDiv = $("<div>");
 
-        // Creating a paragraph tag with the result item's rating
         var p = $("<p>").text("Rating: " + results[i].rating);
 
-        // Creating and storing an image tag
         var topicImage = $("<img>");
-        // Setting the src attribute of the image to a property pulled off the result item
+        
         topicImage.attr("src", results[i].images.fixed_height_still.url);
         topicImage.attr("data-still", results[i].images.fixed_height_still.url);
-        topicImage.attr("data-animate", results[i].images.original);
+        topicImage.attr("data-animate", results[i].images.original.url);
         topicImage.attr("data-state", "still");
         topicImage.addClass("gif");
 
-        // Appending the paragraph and image tag to the animalDiv
         topicDiv.append(p);
         topicDiv.append(topicImage);
 
-        // Prependng the animalDiv to the HTML page in the "#gifs-appear-here" div
         $("#gifArea").prepend(topicDiv);
       }
   });
