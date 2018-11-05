@@ -8,12 +8,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>GifTastic!</title>
+    <title>Sports GifTastic!</title>
   </head>
   <body>
-    <div class="container">
-        <div class="row">
-            <div id="buttonArea"></div>
+    <div class="container bg">
+        <div id="titleArea"><h1>Sports GifTastic!!</h1></div>
+        <div class="row d-flex justify-content-between">
+            <div class="" id="buttonArea"></div>
         </div>
         <div class="row">
             <div class="col-md-6" id="searchArea">
@@ -21,9 +22,11 @@
                 <label for="find-topic">Add a Topic!</label>
                 <input class="form-control" id="find-topic" type="text">
               </div>
-              <button class="btn btn-default" id="add-topic" type="submit">Add</button>
+              <button class="btn btn btn-dark mb-3" id="add-topic" type="submit">Add</button>
             </div>
-            <div class="col-md-6" id="gifArea"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 d-flex flex-row flex-wrap" id="gifArea"></div>
         </div>
     </div>
 

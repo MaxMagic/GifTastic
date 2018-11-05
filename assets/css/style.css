@@ -1,0 +1,36 @@
+
+h1 {
+    color: white;
+    font-family: cursive;
+}
+
+p {
+    color: white;
+    font-family: cursive;
+    font-size: 20px;
+}
+
+#buttonArea {
+    margin-left: 15px;
+}
+
+body, html {
+    height: 100%;
+}
+
+.btn-space {
+    margin-right: 5px;
+}
+
+.bg { 
+    
+    background-image: url("../images/USASportGroup_HRCaseStudy.jpg");
+
+    height: 100%; 
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
+    overflow: auto;
+}

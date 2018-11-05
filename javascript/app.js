@@ -1,4 +1,4 @@
-var topics = ["basketball", "football"];
+var topics = ["basketball", "football","soccer"];
 var searchTopic;
 
 function addButtons(){
@@ -8,6 +8,7 @@ function addButtons(){
       newButton.text(topics[x]);
       newButton.attr("data-name", topics[x]);
       newButton.attr("id", "topicButton");
+      newButton.addClass("btn btn-dark btn-space");
       $("#buttonArea").append(newButton); 
     }
 };
@@ -74,7 +75,7 @@ $("#buttonArea").on("click", "#topicButton", function() {
         topicImage.attr("data-still", results[i].images.fixed_height_still.url);
         topicImage.attr("data-animate", results[i].images.original.url);
         topicImage.attr("data-state", "still");
-        topicImage.addClass("gif");
+        topicImage.addClass("gif btn-space");
 
         topicDiv.append(p);
         topicDiv.append(topicImage);
