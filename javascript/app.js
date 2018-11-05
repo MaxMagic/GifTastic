@@ -1,9 +1,3 @@
-/*  - Create an array of related things
-    - Create for loop to poulate page with buttons
-    - Add search bar
-    - Value in search bar is pushed to current array
-    - Will need controls for the starting and stopping of gifs
-*/
 var topics = ["basketball", "football"];
 var searchTopic;
 
@@ -13,7 +7,7 @@ function addButtons(){
       var newButton = $("<button>");
       newButton.text(topics[x]);
       newButton.attr("data-name", topics[x]);
-      newButton.addClass("topicButton")
+      newButton.attr("id", "topicButton");
       $("#buttonArea").append(newButton); 
     }
 };
@@ -23,7 +17,7 @@ $("#add-topic").on("click", function(event) {
 
     var newTopic = $("#find-topic").val().trim();
 
-    if (topics.indexOf(newTopic) === -1){
+    if (topics.indexOf(newTopic) === -1 && newTopic !== ""){
       topics.push(newTopic);
       console.log(topics);
       $("#find-topic").val("");
@@ -50,7 +44,7 @@ $(".gif").on("click", function() {
       }
 });    
 
-$(".topicButton").on("click", function() {
+$("#buttonArea").on("click", "#topicButton", function() {
   searchTopic = $(this).attr("data-name");
 
   console.log(searchTopic);
