@@ -20,13 +20,10 @@ $("#add-topic").on("click", function(event) {
 
     if (topics.indexOf(newTopic) === -1 && newTopic !== ""){
       topics.push(newTopic);
-      console.log(topics);
       $("#find-topic").val("");
       addButtons();
     } else {
       alert("You added that one already! Choose another topic!");
-      console.log(topics);
-      topics.pop();
       $("#find-topic").val("");
     };
   });  
@@ -35,7 +32,6 @@ $("#add-topic").on("click", function(event) {
 $("#gifArea").on("click", ".gif", function() {
       
       var state = $(this).attr("data-state");
-      console.log(state);
 
       if (state === "still") {
         $(this).attr("src", $(this).attr("data-animate"));
@@ -48,8 +44,6 @@ $("#gifArea").on("click", ".gif", function() {
 
 $("#buttonArea").on("click", "#topicButton", function() {
   searchTopic = $(this).attr("data-name");
-
-  console.log(searchTopic);
   
   var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + searchTopic + "&api_key=PTyPj05INMiXMaDcWb36KtqE9cYwa931&rating=g&limit=10";
 
@@ -57,9 +51,6 @@ $("#buttonArea").on("click", "#topicButton", function() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-
-      console.log(queryURL);
-      console.log(response);
 
       var results = response.data;
 
